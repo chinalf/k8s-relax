@@ -1,0 +1,7 @@
+- hosts: kube-all  #定义的主机组，即应用的主机
+  gather_facts: no
+  remote_user: root     # 远程用户为root
+
+  tasks:
+    - name: restart firewall
+      shell: systemctl restart firewalld.service

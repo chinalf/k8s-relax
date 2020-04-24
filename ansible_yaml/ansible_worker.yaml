@@ -1,0 +1,34 @@
+- hosts: kube-worker  #定义的主机组，即应用的主机
+  gather_facts: no
+  remote_user: root     # 远程用户为root
+
+  tasks:
+    - name: host info
+      shell: uname -o
+
+    - name: image transfer
+      copy:
+          src: "&&pkgurl/image/work"
+          dest: "/tmp/"
+
+    - name: list the files of dir app image
+      shell: ls
+      args:
+        chdir: /tmp/work/app
+      register: app_list
+
+    - name: load app image
+      shell: docker load -i /tmp/work/app/{{ item }}
+      with_items:
+      - "{{ app_list.stdout_lines }}"
+
+    - name: nfs transfer
+      copy:
+          src: "&&pkgurl/nfs"
+          dest: "/tmp/" 
+
+    - name: nfs transfer
+      shell: chmod +x /tmp/nfs/init.sh
+
+    - name: install nfs
+      shell: /tmp/nfs/init.sh

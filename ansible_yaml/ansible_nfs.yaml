@@ -1,0 +1,18 @@
+- hosts: kube-nfs  #定义的主机组，即应用的主机
+  gather_facts: no
+  remote_user: root     # 远程用户为root
+
+  tasks:
+    - name: nfs transfer
+      copy:
+          src: "&&pkgurl/nfs"
+          dest: "/opt/" 
+
+    - name: nfs chmod
+      shell: chmod +x /opt/nfs/*.sh
+
+    - name: install nfs
+      shell: /opt/nfs/init.sh
+
+    - name:  config nfs
+      shell: /opt/nfs/volume.sh

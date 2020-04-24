@@ -1,0 +1,15 @@
+- hosts: kube-worker  #定义的主机组，即应用的主机
+  gather_facts: no
+  remote_user: root     # 远程用户为root
+
+  tasks:
+    - name: firewall cmd transfer
+      copy:
+          src: "&&pkgurl/shell/firewall_work.sh"
+          dest: "/tmp/"
+ 
+    - name: firewall chmod +x
+      shell: chmod +x /tmp/firewall_work.sh
+
+    - name: install firewall
+      shell: /tmp/firewall_work.sh
