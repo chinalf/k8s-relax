@@ -4,7 +4,7 @@ kubectl create -f /opt/yaml/pgMaster-volume.yaml
 kubectl create -f /opt/yaml/relax-volume.yaml
 kubectl create -f /opt/yaml/dbbackup-volume.yaml
 sleep 120s
-kubectl create -f /opt/yaml/pgMaster.yaml.yaml
+kubectl create -f /opt/yaml/pgMaster.yaml
 kubectl create -f /opt/yaml/redis.yaml
 sleep 300s
 kubectl create -f /opt/yaml/relax.yaml
