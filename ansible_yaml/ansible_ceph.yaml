@@ -1,0 +1,15 @@
+- hosts: kube-ceph  #定义的主机组，即应用的主机
+  gather_facts: no
+  remote_user: root     # 远程用户为root
+
+  tasks:
+    - name: ceph transfer
+      copy:
+          src: "&&pkgurl/ceph"
+          dest: "/tmp/"
+
+    - name: chmod sh
+      shell: chmod +x /tmp/ceph/ceph.sh
+
+    - name: install ceph
+      shell: /tmp/ceph/ceph.sh

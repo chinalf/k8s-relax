@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $$component-name
+  namespace: ruijie-itone
+  labels:
+    k8s-app: $$component-name
+spec:
+  selector:
+    matchLabels:
+      k8s-app: $$component-name
+  minReadySeconds: 240
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k8s-app: $$component-name
+    spec:
+      containers:
+      - name: $$component-name
+        image: cn.com.ruijie/relax:1.0
+        imagePullPolicy: Never
+        env:
+        - name: DB_HOST
+          value: "$$serverIP"
+        volumeMounts:
+        - name: ruijie
+          mountPath: /ruijie
+        ports:
+        - containerPort: 9090
+      volumes:
+      - name: ruijie
+        persistentVolumeClaim:
+          claimName: relax-app-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: $$component-name
+  namespace: ruijie-itone
+  labels:
+    k8s-app: $$relax
+spec:
+  ports:
+  - name: http
+    port: 9090
+    targetPort: 9090
+    nodePort: 32002
+  type: NodePort
+  selector:
+    k8s-app: $$component-name

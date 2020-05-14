@@ -1,4 +1,9 @@
 kubectl create -f /opt/yaml/ns.yaml
+
+if [ -f "/opt/yaml/ceph-secret.yaml" ];then
+  kubectl create -f /opt/yaml/ceph-secret.yaml
+fi
+
 kubectl create -f /opt/yaml/pgSlave-volume.yaml
 kubectl create -f /opt/yaml/pgMaster-volume.yaml
 kubectl create -f /opt/yaml/relax-volume.yaml

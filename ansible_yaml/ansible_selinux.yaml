@@ -1,0 +1,10 @@
+- hosts: kube-all  #定义的主机组，即应用的主机
+  gather_facts: no
+  remote_user: root     # 远程用户为root
+
+  tasks:
+    - name: diable selinux
+      shell: sed -i 's/SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
+ 
+    - name: stop selinux
+      shell: setenforce 0

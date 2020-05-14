@@ -1,0 +1,8 @@
+{
+  "volumes": [
+    {
+      "name": "component-app-pvc",
+      "capacity": "10Gi"
+    }
+  ]
+}

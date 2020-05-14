@@ -5,11 +5,20 @@
   tasks:
     - name: ntp transfer
       copy:
-          src: "&&pkgurl/shell/ntp.sh"
+          src: "&&pkgurl/ntp"
           dest: "/tmp/"
- 
-    - name: ntp chmod +x
-      shell: chmod +x /tmp/ntp.sh
 
-    - name: install ntp
-      shell: /tmp/ntp.sh
+    - name: hwclock
+      shell: hwclock --hctosys
+
+    - name: ntp rpm
+      shell: rpm -ivh /tmp/ntp/rpm/* --nodeps --force
+ 
+    - name: ntp config
+      shell: cp /tmp/ntp/ntp1.conf /etc/ntp.conf
+
+    - name: enable ntp
+      shell: systemctl enable ntpd
+
+    - name: restart ntp
+      shell: systemctl restart ntpd
