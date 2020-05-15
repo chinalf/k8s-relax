@@ -10,7 +10,7 @@ cephA=(${cephAll//,/ })
 number=${#cephA[*]}
 for i  in $(seq 1 $number)
 do
-  cephAllName="$cephAllName ceph-$i"
+  cephAllName="$cephAllName storage-$i"
 done
 
 
