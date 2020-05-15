@@ -8,8 +8,17 @@
           src: "&&pkgurl/ntp"
           dest: "/tmp/"
 
+    - name: localtime
+      shell: mv /etc/localtime /etc/localtime.bak
+
+    - name: ls localtime
+      shell: ln -s /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
+
     - name: hwclock
       shell: hwclock --hctosys
+
+    - name: save clock
+      shell: clock -w
 
     - name: ntp rpm
       shell: rpm -ivh /tmp/ntp/rpm/* --nodeps --force
