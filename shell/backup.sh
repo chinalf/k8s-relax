@@ -1,4 +1,11 @@
-ansible-playbook /opt/install/ansible_yaml/ansible_nfs_backup.yaml
+date
+
+if [ -f "/opt/yaml/ceph-secret.yaml" ];then
+  ansible-playbook /opt/install/ansible_yaml/ansible_ceph_backup.yaml
+else
+  ansible-playbook /opt/install/ansible_yaml/ansible_nfs_backup.yaml
+fi
+
 kubectl create -f /opt/yaml/backup.yaml
 
 sleep 300

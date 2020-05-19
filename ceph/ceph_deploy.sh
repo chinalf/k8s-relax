@@ -15,7 +15,7 @@ done
 
 
 # install
-rpm -ivh /tmp/ceph/ceph-deploy/* --nodeps --force
+rpm -ivh /opt/ceph/ceph-deploy/* --nodeps --force
 
 
 mkdir -p /home/cluster
@@ -75,5 +75,5 @@ echo "  namespace: ruijie-itone" >> /opt/ceph-secret.yaml
 echo "data:" >> /opt/ceph-secret.yaml
 echo "  key: $key" >> /opt/ceph-secret.yaml
 
-ansible-playbook /tmp/ceph/ansible_secret.yaml
+ansible-playbook /opt/ceph/ansible_secret.yaml
 

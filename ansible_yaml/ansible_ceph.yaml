@@ -6,10 +6,10 @@
     - name: ceph transfer
       copy:
           src: "&&pkgurl/ceph"
-          dest: "/tmp/"
+          dest: "/opt/"
 
     - name: chmod sh
-      shell: chmod +x /tmp/ceph/ceph.sh
+      shell: chmod +x /opt/ceph/*.sh
 
     - name: install ceph
-      shell: /tmp/ceph/ceph.sh
+      shell: /opt/ceph/ceph.sh

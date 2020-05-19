@@ -1,4 +1,4 @@
 #!/bin/bash
 
-rpm -ivh /tmp/ceph/ceph/* --nodeps --force
+rpm -ivh /opt/ceph/ceph/* --nodeps --force
 
