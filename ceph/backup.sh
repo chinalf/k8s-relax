@@ -1,4 +1,5 @@
 # 备份App
+cd /u01
 times=$(date '+%Y%m%d%H%M%S')
 mkdir -p /u01/relax-back$times
 

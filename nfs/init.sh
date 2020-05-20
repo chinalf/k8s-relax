@@ -3,7 +3,7 @@ systemctl stop nfs-server.service
 systemctl stop rpcbind.service
 
 #安装nfs服务
-rpm -ivh /tmp/nfs/rpm/*.rpm --force --nodeps
+rpm -ivh /opt/nfs/rpm/*.rpm --force --nodeps
 
 #将服务添加到系统启动
 systemctl enable rpcbind.service
