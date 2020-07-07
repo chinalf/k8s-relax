@@ -40,6 +40,8 @@ ceph-deploy mgr create $cephAllName
 #启动dashboard
 ceph mgr module enable dashboard
 
+sleep 120s
+
 #部署cephfs
 ceph-deploy mds create $cephAllName
 

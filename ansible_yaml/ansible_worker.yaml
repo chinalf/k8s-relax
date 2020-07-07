@@ -25,7 +25,7 @@
     - name: nfs transfer
       copy:
           src: "&&pkgurl/nfs"
-          dest: "/tmp/" 
+          dest: "/opt/" 
 
     - name: nfs transfer
       shell: chmod +x /opt/nfs/init.sh
