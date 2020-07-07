@@ -28,7 +28,7 @@
           dest: "/tmp/" 
 
     - name: nfs transfer
-      shell: chmod +x /tmp/nfs/init.sh
+      shell: chmod +x /opt/nfs/init.sh
 
     - name: install nfs
-      shell: /tmp/nfs/init.sh
+      shell: /opt/nfs/init.sh
